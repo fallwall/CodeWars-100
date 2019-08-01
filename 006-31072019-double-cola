@@ -64,3 +64,18 @@ function whoIsNext(names, r) {
   
   return names[Math.floor((r - 1) / copiesOfEachPerson) % peopleInLine];
 }
+
+===================================================================================================
+
+function whoIsNext(names, n){
+  x=names.length;
+  i=1;
+  
+  while (n > x){
+    n -= x;
+    x *= 2;
+    i *= 2;
+  }
+  
+  return (names[parseInt((n - 1)/i)]);   
+}
