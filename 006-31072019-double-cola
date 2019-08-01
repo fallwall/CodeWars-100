@@ -46,3 +46,21 @@ function whoIsNext(names, r) {
   while (r >= l) { r -= l; l *= 2; }
   return names[Math.ceil(names.length * r / l)-1];
 }
+
+
+===================================================================================================
+
+
+
+function whoIsNext(names, r) {
+  var peopleInLine = names.length;
+  var copiesOfEachPerson = 1;
+  
+  while (r > peopleInLine) {
+    r -= peopleInLine;
+    copiesOfEachPerson *= 2;
+    peopleInLine *= 2;
+  }
+  
+  return names[Math.floor((r - 1) / copiesOfEachPerson) % peopleInLine];
+}
