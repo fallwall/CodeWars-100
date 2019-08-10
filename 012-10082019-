@@ -1,0 +1,76 @@
+What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. 
+
+For example:
+'abba' & 'baab' == true
+'abba' & 'bbaa' == true
+'abba' & 'abbba' == false
+'abba' & 'abca' == false
+
+Write a function that will find all the anagrams of a word from a list. 
+You will be given two inputs a word and an array with words. 
+You should return an array of all the anagrams or an empty array if there are none. 
+
+For example:
+anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+
+anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+
+anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
+
+
+=================================================================================
+
+My solution:
+
+const anagrams=(word, words)=>{
+  const word_array = word.split("");
+  const index_array = [];
+  for (let i = 0; i < words.length; i ++ ) {
+    const result_array = [];
+    if (words[i].split("").length === word_array.length && words[i].split("").sort().every(function(value, index) { return value === word_array.sort()[index]})) {
+      index_array.push(words[i]);
+    }
+  }
+  return index_array;
+
+Weird behavior of JS array always puzzles me. WAT.
+
+=================================================================================
+
+note: array1.length === array2.length && array1.sort().every(function(value, index) { return value === array2.sort()[index]});
+
+and maybe: JSON.stringify(a1) === JSON.stringify(a2);
+
+function arraysIdentical(a, b) {
+    var i = a.length;
+    if (i != b.length) return false;
+    while (i--) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+};
+
+
+=================================================================================
+
+Inspired by: 
+
+
+String.prototype.sort = function() {
+  return this.split("").sort().join("");
+};
+
+function anagrams(word, words) {
+  return words.filter(function(x) {
+      return x.sort() === word.sort();
+  });
+}
+
+=================================================================================
+
+Inspired by--> OMG 
+
+function anagrams(word, words) {
+  word = word.split('').sort().join('');
+  return words.filter(function(v) {return word == v.split('').sort().join('');});
+}
