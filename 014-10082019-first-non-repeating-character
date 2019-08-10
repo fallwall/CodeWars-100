@@ -1,0 +1,87 @@
+Write a function named first_non_repeating_letter that takes a string input, 
+and returns the first character that is not repeated anywhere in the string.
+
+For example, if given the input 'stress', the function should return 't', 
+since the letter t only occurs once in the string, and occurs first in the string.
+
+As an added challenge, upper- and lowercase letters are considered the same character, 
+but the function should return the correct case for the initial letter. 
+For example, the input 'sTreSS' should return 'T
+
+If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests.
+
+================================================================================
+
+Fist attempt:
+function firstNonRepeatingLetter(s) {
+  const result = [];
+  for ( let i =0; i < s.length; i ++) {
+    const letter = s.slice(i,i+1);
+    const remainder = s.slice(0,i).concat((s.slice(i+1, s.length)));
+    if (remainder.includes(letter) === false)
+   {
+      result.push(letter);
+    }
+  }
+  const answer = result.length > 0 ? result[0]: "";
+  return answer;
+}
+
+
+================================================================================
+second:
+
+function firstNonRepeatingLetter(s) {
+  const result = [];
+  for ( let i =0; i < s.length; i ++) {
+    const letter = s.charAt(i);
+    if (s.indexOf(letter) == i && s.indexOf(letter, i + 1) == -1) {
+      return letter;
+    }
+  }
+  return "";
+}
+
+================ failing the same "harder test" , WTF ================
+
+const firstNonRepeatingLetter=(str)=> {
+ var arr = str.split('');
+ var result = '';
+ var ctr = 0; 
+  for (var x = 0; x < arr.length; x++) {
+   ctr = 0;
+  for (var y = 0; y < arr.length; y++) {
+  if (arr[x] === arr[y]) {
+    ctr+= 1;
+    }
+   }
+
+if (ctr < 2) {
+  result = arr[x];
+  break;
+  }
+}
+return result;
+}
+================ failing the same test , WTF, guessing it's about case sensitivity ================
+
+function firstNonRepeatingLetter(s) {
+
+  const reducer = (acc, cur) => {
+    let l = cur.toLowerCase();
+    acc[l] ? acc[l][1] += 1 : acc[l] = [cur, 1];
+    return acc;
+  }
+  
+  const obj = s
+    .split('')
+    .reduce(reducer, {});
+  
+  const result = Object.values(obj).find(el => el[1] === 1);
+    
+  return result ? result[0] : '';
+}
+
+
+
+finally.
