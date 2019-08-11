@@ -1,0 +1,38 @@
+Christmas is comming, and Santa has a long list to go through, to find who deserves presents for the big day. 
+Go through a list of children, and return a list containing every child who appeared on Santa's list. 
+Do not add any child more than once. Output should be sorted. For java, use Lists.
+
+Comparison should be case sensitive and the returned list should contain only one copy of each name.
+"Sam" and "sam" is allowed, but "sAm" and "sAm" is not.
+
+
+
+==============================================================================
+did not pass test, although looks like it:
+
+function findChildren(santasList, children) {
+  const arr= santasList.concat(children).sort();
+  const answer = [];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i].toLowerCase() === arr[i-1].toLowerCase()) {
+    answer.push(arr[i].toLowerCase());
+    }
+  }
+  return answer;
+}
+
+==============================================================================
+let findChildren = (sL, ch) => sL
+    .filter(a => ch.includes(a)).sort()
+    .filter((a, i, arr ) => !arr.slice( i + 1 )
+    .includes(a));
+    
+==============================================================================
+function findChildren(santasList, children) {
+  return Array.from(new Set(children.filter(child => santasList.indexOf(child) !== -1).sort()))
+}
+
+==============================================================================
+
+const findChildren = (santasList, children) =>
+[...new Set(santasList.filter(x => children.includes(x)).sort())];
