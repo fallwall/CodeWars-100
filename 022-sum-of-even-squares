@@ -1,0 +1,8 @@
+https://www.geeksforgeeks.org/sum-of-squares-of-even-and-odd-natural-numbers/
+
+const somOfEvenSq =(n)=> {
+return Array.from(Array(n+1).keys()).slice(1)
+            .filter(i => i % 2 ===0)
+            .map(i => i**2)
+            .reduce((a,b)=>(a+b), 0)
+}
