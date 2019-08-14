@@ -1,0 +1,11 @@
+https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+
+const list = [
+  { color: 'white', size: 'XXL' },
+  { color: 'red', size: 'XL' },
+  { color: 'black', size: 'M' }
+]
+
+list.sort((a, b) => (a.color > b.color) ? 1 : -1)
+
+list.sort((a, b) => (a.color > b.color) ? 1 : (a.color === b.color) ? ((a.size > b.size) ? 1 : -1) : -1 )
