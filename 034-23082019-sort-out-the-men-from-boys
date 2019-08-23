@@ -1,0 +1,27 @@
+found the kata title lame,
+basically receive an array of number,
+return even numbers first asd and then odd number desd.
+
+==============================================================
+function menFromBoys(arr){
+  arr = Array.from(new Set(arr));
+  let odd = arr.filter(a => a % 2).sort((a, b) => b - a);
+  let even = arr.filter(a => a % 2 === 0).sort((a, b) => a - b);
+  return even.concat(odd);
+}
+
+==============================================================
+
+const menFromBoys = arr => {
+  let [evens, odds] = [[], []];
+  [...new Set(arr)].sort((a, b) => a - b) .forEach(n => n % 2 ? odds.unshift(n) : evens.push(n));
+  return [...evens, ...odds];
+};
+
+
+==============================================================
+
+const menFromBoys = a => a
+  .filter(e => !(e % 2)).sort((x, y) => x - y)
+  .concat(a.filter(e => e % 2).sort((x, y) => y - x))
+  .filter((e, i, a) => i === a.indexOf(e));
