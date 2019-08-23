@@ -38,3 +38,21 @@ function fortune(f0, p, c0, n, i) {
     let newC = c0 * (1 + i/100);
     return fortune(newF, p, newC, n - 1, i);
 }
+
+==================================================================
+function fortune(f0, p, c0, n, i) {
+  while(--n) {
+    f0 = (1 + p/100) * f0 - c0;
+    c0 = c0 * (1 + i/100);
+  }
+  return f0 >= 0;
+}
+==================================================================
+function fortune(f0, p, c0, n, i) {
+  for (var j=1; j<n; ++j)
+  {
+    f0=Math.floor(f0*(1+p/100))-c0;
+    c0=Math.floor(c0*(1+i/100));
+  }
+  return f0>=0;
+}
