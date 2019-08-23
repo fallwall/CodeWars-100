@@ -20,3 +20,9 @@ const covfefe = str =>
   str.includes('coverage')
     ? str.replace(new RegExp('coverage', 'g'), 'covfefe')
     : `${str} covfefe`
+===================================================================================================
+
+function covfefe(str) {
+  const res = str.replace(/coverage/g, "covfefe")
+  return res === str ? str + " covfefe" : res
+}
