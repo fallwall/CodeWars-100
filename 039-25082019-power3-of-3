@@ -1,0 +1,33 @@
+Given a positive integer N, return the largest integer k such that 3^k < N.
+
+For example,
+
+largestPower(3) = 0
+largestPower(4) = 1
+You may assume that the input to your function is always a positive integer.
+
+=============================================================================
+My solution:
+function largestPower(n){
+  for (let i = n-1; i >=0; i--) {
+    if (3 ** i < n ) {
+      return i;
+    }
+  }
+}
+
+works but timed out....
+
+=============================================================================
+My solution 2:
+function largestPower(n){
+let result = [];
+  for (let i = n-1; i >=0; i--) {
+    if (3 ** i < n ) {
+      result.push(i);
+    }
+  }
+  return result[0];
+}
+
+still works.still timed out
