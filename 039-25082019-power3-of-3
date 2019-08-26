@@ -31,3 +31,14 @@ let result = [];
 }
 
 still works.still timed out
+
+=============================================================================
+Attempt 3, still failed one test about infinity.
+
+function largestPower(n){
+if (n <=0 ) {
+  return 0;
+} else {
+  return Math.floor(Math.log10(n-1)/Math.log10(3));
+}
+}
