@@ -42,3 +42,23 @@ if (n <=0 ) {
   return Math.floor(Math.log10(n-1)/Math.log10(3));
 }
 }
+
+=============================================================================
+resolved, my attempt4 with while loop:
+
+function largestPower(n){
+  let k = 0l
+  while(3**k < n) {
+  k++;
+  }
+  return k-1;
+}
+
+
+=============================================================================
+Inspired by:
+function largestPower(n){
+  return Math.ceil(Math.log10(n)/Math.log10(3))-1
+}
+
+
