@@ -47,7 +47,7 @@ if (n <=0 ) {
 resolved, my attempt4 with while loop:
 
 function largestPower(n){
-  let k = 0l
+  let k = 0;
   while(3**k < n) {
   k++;
   }
