@@ -1,0 +1,21 @@
+sumCubes(2) // 9
+// sum of the cubes of 1 and 2 is 1 + 8
+
+
+======================================================
+My solution: 
+
+function sumCubes(n){
+  let answer = 0;
+  for (let i=1; i <=n; i++) {
+    answer += i ** 3;
+  }
+  return answer;
+}
+
+======================================================
+Inspired By:
+
+const sumCubes = (n, total = 0, i = 1) => i > n ? total : sumCubes(n, total += Math.pow(i, 3), ++i)
+
+const sumCubes = n => [...Array(n + 1).keys()].reduce((r, i) => r + i ** 3);
