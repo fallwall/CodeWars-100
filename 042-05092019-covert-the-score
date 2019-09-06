@@ -1,0 +1,100 @@
+You are working at a lower league football stadium and you've been tasked with automating the scoreboard.
+
+The referee will shout out the score, you have already set up the voice recognition module which turns the ref's voice into a string, but the spoken score needs to be converted into a pair for the scoreboard!
+
+e.g. "The score is four nil" should return [4,0]
+
+Either teams score has a range of 0-9, and the ref won't say the same string every time e.g.
+
+"new score: two three"
+
+"two two"
+
+"Arsenal just conceded another goal, two nil"
+Note:
+
+Please return an array
+Please rate and enjoy!
+
+======================================================================================
+My lengthy solution with a helper:
+
+const decode=(text)=>{
+  switch(text) {
+    case 'nil':
+    return 0;
+    break;
+    case 'one':
+    return 1;
+    break;
+    case 'two':
+    return 2;
+    break;
+    case 'three':
+    return 3;
+    break;
+    case 'four':
+    return 4;
+    break;
+    case 'five':
+    return 5;
+    break;
+    case 'six':
+    return 6;
+    break;
+    case 'seven':
+    return 7;
+    break;
+    case 'eight':
+    return 8;
+    break;
+    case 'nine':
+    return 9;
+    break;
+    default:
+    return ''
+  }
+}
+
+function scoreboard(string) {
+  const [num1, num2] = string.split(' ').slice(string.split(' ').length-2);
+  return [decode(num1), decode(num2)]
+}
+
+======================================================================================
+Inspired By:
+
+
+function scoreboard(string) {
+  var arr=string.split(' ');
+  var a=['nil','one','two','three','four','five','six','seven','eight','nine']
+  return [a.indexOf(arr[arr.length-2]),a.indexOf(arr[arr.length-1])];
+}
+
+const scoreboard = string => {
+  const dictionary = {
+    'nil': 0,
+    'one': 1,
+    'two': 2,
+    'three': 3,
+    'four': 4,
+    'five': 5,
+    'six': 6,
+    'seven': 7,
+    'eight': 8,
+    'nine': 9,
+  };
+  const scoreOne = string.split(' ').reverse()[1];
+  const scoreTwo = string.split(' ').reverse()[0];
+  return [dictionary[scoreOne], dictionary[scoreTwo]];
+}
+
+
+function scoreboard(string) {
+  var dict = {'nil': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 
+              'six': 6, 'seven': 7, 'eight': 8, 'nine': 9};
+  return string.match(/(nil|one|two|three|four|five|six|seven|eight|nine)/g).map(e => dict[e]);
+}
+
+const scoreboard = (i, s = 'nil|one|two|three|four|five|six|seven|eight|nine') =>  i.match(new RegExp(s,"ig")).map(e=> s.split('|').findIndex(x=> x==e) );
+
