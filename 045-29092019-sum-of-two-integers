@@ -1,0 +1,36 @@
+Given Two integers a , b , find The sum of them , BUT You are not allowed to use the operators + and -
+
+Notes
+The numbers (a,b) may be positive , negative values or zeros .
+
+Returning value will be an integer .
+
+Javascript: the Array reduce methods are disabled, along with eval, require, and module .
+
+
+Input >> Output Examples
+1- Add (5,19) ==> return (24) 
+2- Add (-27,18) ==> return (-9)
+3- Add (-14,-16) ==> return (-30)
+
+==========================================================================================================
+
+My solution:
+function add(x, y)
+{
+        return y === 0 ? x : add( x ^ y, (x & y) << 1); 
+}
+
+==========================================================================================================
+
+Inspired by - this very much math-y solution:
+function add(x, y)
+{
+    console.log(x,y)
+    x/=10000000
+    y/=10000000
+    
+    return Math.round(Math.log2((2**x)*(2**y))*10000000)
+}
+
+https://www.geeksforgeeks.org/add-two-numbers-without-using-arithmetic-operators/
