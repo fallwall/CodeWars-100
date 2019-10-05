@@ -1,0 +1,28 @@
+Given an array, find the int that appears an odd number of times.
+
+There will always be only one integer that appears an odd number of times.
+
+===========================================================
+My solution:
+function findOdd(A) {
+  for (let i = 0; i < A.length; i ++) {
+   const num = A.filter(n => n === A[i]).length;
+   if (num % 2 === 1) {
+     return A[i]
+   }
+  }
+}
+
+===========================================================
+One -liner that I don't understand:
+const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+
+function findOdd(A) {
+  return A.reduce(function(c,v){return c^v;},0);
+}
+
+===========================================================
+Inspired by:
+function findOdd(arr) {
+  return arr.find((item, index) => arr.filter(el => el == item).length % 2)
+}
