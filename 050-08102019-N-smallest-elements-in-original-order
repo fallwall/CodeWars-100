@@ -15,14 +15,43 @@ firstNSmallest([1,2,3,-4,0],3) === [1,-4,0]
 firstNSmallest([1,2,3,4,5],0) === []
 
 
-==============================================
+============================================================================================
 My solution: 
 function firstNSmallest(array, n){
-  return array.map(function(e,i){return {ind: i, val: e}})
-                        .sort((a,b)=> a.val - b.val)
-                        .slice(0, n)
-                        .sort((a,b)=> a.ind - b.ind)
-                        .map(item=> item.val);
+  return array.map((e,i) => {ind: i, val: e})
+              .sort((a,b)=> a.val - b.val)
+              .slice(0, n)
+              .sort((a,b)=> a.ind - b.ind)
+              .map(item=> item.val);
 }
 
 failed 4 random test. maybe problem with -/+?
+
+============================================================================================
+Improved/Solved:
+
+function firstNSmallest(arr, n) {
+  return arr.map((e,i) => ({e,i}))
+    .sort((a,b) => a.e - b.e || a.i - b.i)
+    .slice(0,n)
+    .sort((a,b) => a.i - b.i)
+    .map(w => w.e);
+}
+
+============================================================================================
+function firstNSmallest(array, n){
+ while(array.length != n) {
+   array.splice(array.lastIndexOf(Math.max(...array)), 1)
+   }
+   return array
+ }
+ 
+ 
+ ============================================================================================
+ function firstNSmallest(array, n){
+  return array.map((x,i) => [x,i])
+    .sort((a,b) => a[0] !== b[0] ? a[0]-b[0] : a[1]-b[1])
+    .slice(0, n)
+    .sort((a,b) => a[1]-b[1])
+    .map(x => x[0])
+}
