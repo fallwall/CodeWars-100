@@ -1,0 +1,59 @@
+In this kata, you've to count lowercase letters in a given string and return the letter count in
+a hash with 'letter' as key and count as 'value'. The key must be 'symbol' instead of string in 
+Ruby and 'char' instead of string in Crystal.
+
+example:
+
+letter_count('arithmetics') #=> {"a": 1, "c": 1, "e": 1, "h": 1, "i": 2, "m": 1, "r": 1, "s": 1, "t": 2}
+
+
+===========================================================================================
+My solution:
+
+function letterCount(s){
+  const sorted = s.split("").sort();
+  const unique = Array.from(new Set(sorted));
+  let answer = {};
+  unique.map(letter => answer[`${letter}`]= sorted.filter(n => n === letter).length);
+  return answer;
+}
+
+
+===========================================================================================
+Inspired by:
+
+function letterCount(s){
+  let res = {}
+  s.split('').sort((a, b) => a - b).forEach(el => res[el] ? res[el]++ : res[el] = 1)
+  
+  return res;
+}
+
+
+
+===========================================================================================
+const letterCount = s => s
+  .split('')
+  .reduce((accum, value) => {
+    accum[value] = accum[value] ? accum[value] + 1 : 1
+    return accum
+  }, {})
+  
+  
+
+
+===========================================================================================
+  function letterCount(s){
+  let obj = {};
+  for(let i = 0; i < s.length; i++){
+    obj[s[i]] !== undefined ? obj[s[i]]++ : obj[s[i]] = 1;
+  }
+  return obj;
+}
+
+
+
+
+===========================================================================================
+const letterCount = (s, l = {}) => s.split('').map(i => l[i] = l[i] ? l[i] + 1 : 1) && l
+
