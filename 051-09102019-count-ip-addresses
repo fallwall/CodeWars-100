@@ -1,0 +1,52 @@
+Write a function that accepts a starting and ending IPv4 address, and the number of IP addresses from start to end, excluding the end IP address.
+
+All input to the function will be valid IPv4 addresses in the form of strings. The ending address will be at least one address higher than the starting address.
+
+ips_between("10.0.0.0", "10.0.0.50")  =>   50 
+ips_between("10.0.0.0", "10.0.1.0")   =>  256 
+ips_between("20.0.0.10", "20.0.1.0")  =>  246
+
+
+================================================================================
+My solution:
+
+function ipsBetween(start, end){
+  const [s1, s2, s3, s4] = start.split(".");
+  const [e1, e2, e3, e4] = end.split(".");
+  const diff4 = parseInt(e4) - parseInt(s4);
+  const diff3 = parseInt(e3) - parseInt(s3);
+  const diff2 = parseInt(e2) - parseInt(s2);
+  const diff1 = parseInt(e1) - parseInt(s1);
+  return diff4 + diff3 * 256 + diff2 * 256 * 256 + diff1 * 256 * 256 * 256;
+}
+
+================================================================================
+
+Inspired by:
+
+function ipsBetween(start, end) {
+  start = start.split('.');
+
+  return end.split('.').reduce(function(sum, x, i) {
+    return (sum << 8) + Number(x) - Number(start[i])
+  }, 0);
+}
+
+function ipsBetween(start, end){
+  function val(ip){return ip.split('.').reduce(function(tot,cur,i){return tot+cur*Math.pow(256,3-i)}, 0);}
+  return val(end)-val(start);
+}
+
+onst ipsBetween = (start, end) => convertToNum(end) - convertToNum(start)
+
+const convertToNum = ip => ip.split(".")
+  .map(Number).reduce((a,b) => a*256+b);
+  
+  
+  function ipsBetween(start, end){
+  const num = ip => ip.split('.')
+                      .map(x => parseInt(x))
+                      .reduce((acc, e) => acc * 256 + e);  
+  
+  return num(end) - num(start);
+}
