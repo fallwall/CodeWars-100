@@ -1,0 +1,33 @@
+firstDup('tweet') => 't'
+firstDup('like') => undefined
+This is not the same as finding the character that repeats first. In that case, an input of 'tweet' would yield 'e'.
+
+================================================================================
+
+My solution:
+
+function firstDup (s) {
+  const arr = s.split("");
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.slice(i+1, arr.length).indexOf(arr[i]) !== -1) {
+      return arr[i];
+    } 
+  }
+}
+
+================================================================================
+function firstDup (s) {
+  return s[s.search(/(.).*\1/ )]
+}
+
+
+================================================================================
+function firstDup (s) {
+  for (var i = 0; i < s.length; ++i) {
+    if (s.lastIndexOf(s[i]) != i) return s[i];
+  }
+}
+
+
+================================================================================
+const firstDup=s=>(s=[...s]).find((e,i)=>s.find((c,j)=>i!=j&&e==c))
