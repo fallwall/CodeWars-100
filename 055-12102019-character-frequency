@@ -1,0 +1,55 @@
+Write a function that takes a piece of text in the form of a string and returns the letter frequency count for the text. 
+This count excludes numbers, spaces and all punctuation marks. Upper and lower case versions of a character are equivalent 
+and the result should all be in lowercase.
+
+The function should return a list of tuples (in Python and Haskell) or arrays 
+(in other languages) sorted by the most frequent letters first. The Rust implementation should return an ordered BTreeMap. 
+Letters with the same frequency are ordered alphabetically. For example:
+
+  letterFrequency('aaAabb dddDD hhcc')
+will return
+
+  [['d',5], ['a',4], ['b',2], ['c',2], ['h',2]]
+Letter frequency analysis is often used to analyse simple substitution cipher texts like those created by the Caesar cipher.
+
+
+==============================================================================
+My solution:
+
+function letterFrequency(text){
+  const answer = [];
+  if (text.length = 0) {
+  answer = [];
+  } else {
+  const letters = text.toLowerCase().replace(/[^a-z]+/g, '').split('');
+  for (let i = 0; i < letters.length; i++) {
+    if (letters.slice(0, i).indexOf(letters[i]) === -1) {
+      answer.push([`${letters[i]}`, letters.slice(i, letters.length).filter(l => l === letters[i]).length]);
+    }
+  }
+  }
+  return answer.sort((a, b) => b[1] - a[1] || a[0].charCodeAt(0) - b[0].charCodeAt(0));
+}
+
+==============================================================================
+One liner:
+function letterFrequency(text){
+  return (text.toLowerCase()
+              .replace(/[^a-z]/g,"")
+              .split("")
+              .sort()
+              .join("")
+              .match(/(\w)\1+|(\w)/g) || [])
+              .map(function(v){ return [v[0], v.length]; })
+              .sort(function(a,b){ 
+                  if (a[1] === b[1]) return (a[0].charCodeAt(0) - b[0].charCodeAt(0))
+                  else return b[1] - a[1]
+              });
+}
+
+==============================================================================
+
+const letterFrequency = text => {
+  text = text.toLowerCase().replace(/[^a-z]/g, '');
+  return [...new Set(text)].map(ch => [ch, text.split(ch).length - 1]).sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+};
