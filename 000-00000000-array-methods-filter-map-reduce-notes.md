@@ -1,7 +1,3 @@
-# We've earned some iteration helpers
-
-- Why would we want iteration helpers?
-
 ## Basic for loops
 
 ```javascript
