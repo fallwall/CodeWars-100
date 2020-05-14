@@ -1,0 +1,104 @@
+
+
+
+
+
+
+=============================================================================
+Solution:
+
+const startCharASCII = 97;
+const letterCount = 26;
+
+function decode(r) {
+    var num = parseInt(r);
+    var letters = [];
+    var codes = [];
+    for (var i = 0; i < letterCount; i++) {
+        letters[i] = String.fromCharCode(startCharASCII + i);
+        codes[i] = String.fromCharCode(i * num % letterCount + startCharASCII);
+    }
+    if (Array.from(new Set(codes)).length != letterCount) return 'Impossible to decode';
+    return r.split(num)[1].split('').map((v, i, a) => letters[codes.indexOf(v)]).join('');
+}
+
+
+=============================================================================
+My failed solution:
+
+const decode=(r)=> {
+    const num = r.split("").filter(e => parseInt(e) == e);
+    const nan = r.slice(num.length).split("");
+    const number = parseInt(num.join(""));
+    const result = [];
+    for (let i=0; i< nan.length; i++) {
+      for (let j=0; j< 26; j++) {
+        if (number * j % 26 === (nan[i].charCodeAt()-97)) {
+          result.push(String.fromCharCode(j+97));
+        break;
+        }
+      }
+    }
+    const rev = encode(result.join(""), number);
+    const net = Array.from(new Set(result));
+    return (rev == r && rev.length === (r.length - number.length) && net.length == 26)? result.join(""):"Impossible to decode";
+}
+
+const encode=(s,n)=> {
+  const output = [];
+  const sarr = s.split("");
+  for (let i = 0; i< sarr.length; i++) {
+    output.push(String.fromCharCode((sarr[i].charCodeAt()-97) * n % 26+97));
+  }
+  return n+output.join("");
+}
+
+=============================================================================
+
+??? Inspired
+
+function decode(r) {
+    let a = "abcdefghijklmnopqrstuvwxyz"
+    let m = r.match(/(\d+)([a-z]+)/);
+    let nb = parseInt(m[1]) % 26;
+    let s = m[2];
+    let dict={3:9, 9:3, 21:5, 5:21, 7:15, 15:7, 11:19, 19:11, 17:23, 23:17, 25:25, 1:1}
+    let n = dict[nb];
+    if (n === undefined)
+        return "Impossible to decode";
+    var res = "";
+    for (let c of s)
+        res += a[(a.indexOf(c) * n) % 26];
+    return res;
+}
+
+=============================================================================
+
+decode=r=>{
+  const m={},[x,k,s]=r.match(/(\d+)(.*)/);
+  for (let i=0;i<26;i++) m[i*k%26]=String.fromCharCode(i+97);  
+  return k%2&&k%13?[...s].map(e=>m[e.charCodeAt``-97]).join``:'Impossible to decode';
+}
+
+=============================================================================
+
+function decode(r) {
+  const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  const newArr = r.match(/(^\d*)(.*)/).slice(1);
+  let newString = '';
+  newArr[1] 
+  for (let j = 0; j < newArr[1].length; j++) {
+    let orig = '';
+    const each = newArr[1][j]
+    for (let i = 0; i < alphabets.length; i++) {
+      if (i * newArr[0] % 26 === alphabets.indexOf(each)) {
+        if (orig !== '') {
+          return ("Impossible to decode");
+        }
+        orig = i;
+        newString += alphabets[i];
+      }
+    }
+  }
+  return newString;
+}
