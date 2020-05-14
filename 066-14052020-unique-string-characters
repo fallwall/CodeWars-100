@@ -1,0 +1,54 @@
+In this Kata, you will be given two strings a and b and your task will be to return the characters 
+that are not common in the two strings.
+
+For example:
+
+solve("xyab","xzca") = "ybzc" 
+--The first string has 'yb' which is not in the second string. 
+--The second string has 'zc' which is not in the first string. 
+Notice also that you return the characters from the first string concatenated 
+with those from the second string.
+
+More examples in the tests cases.
+
+===============================================================
+My solution:
+
+function solve(a,b){
+  const arrA = a.split("");
+  const arrB = b.split("");
+  const result = [];
+  for (let i=0; i< a.length; i++) {
+    if (arrB.indexOf(arrA[i]) === -1) {
+      result.push(arrA[i]);
+  }
+  }
+  for (let i=0; i< b.length; i++) {
+    if (arrA.indexOf(arrB[i]) === -1) {
+      result.push(arrB[i]);
+    }
+ }
+ return result.join("");
+};
+
+===============================================================
+
+Inspired by:
+
+function solve(a,b) {
+  let setA = new Set(a);
+  let setB = new Set(b);
+  return [...(a+b)].filter(c => setA.has(c) ^ setB.has(c)).join("");
+};
+
+===============================================================
+
+function solve(a,b){
+ return (a+b).split("").filter(c => !a.includes(c) || !b.includes(c)).join("");
+};
+
+===============================================================
+
+const solve = (a, b) => [...a, ...b].reduce((acc, cur) => (
+  acc += a.includes(cur) && b.includes(cur) ? '' : cur
+), '');
