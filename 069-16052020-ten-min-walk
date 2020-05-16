@@ -17,12 +17,15 @@ def isValidWalk(walk):
  
  ====================================================================
  
- the logically sound JS version that didn't work:
+JS-worked:
  
  function isValidWalk(walk) {
   return (walk.length ===10 && walk.filter(e => e === 'n').length === walk.filter(e => e === 's').length && walk.filter(e => e === 'e').length === walk.filter(e => e === 'w').length) ? true: false;
 }
 
+ ====================================================================
+ the logically sound JS version that didn't work:
+ 
  function isValidWalk(walk) {
   const NS = walk.filter(ns => ns === 'n' | ns === 's');
   const EW = walk.filter(ew => ew === 'e' | ew === 'w');
@@ -51,3 +54,12 @@ def isValidWalk(walk):
 
 def isValidWalk(walk):
     return len(walk) == 10 and walk.count('n') == walk.count('s') and walk.count('e') == walk.count('w')
+    
+ ====================================================================
+ 
+ Inspired by this helper function method:
+ 
+ function isValidWalk(walk) {
+  function count(c) { return walk.filter(function (v) { return v == c }).length }
+  return walk.length == 10 && count('w') == count('e') && count('n') == count('s')
+}
