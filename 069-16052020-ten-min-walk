@@ -18,6 +18,11 @@ def isValidWalk(walk):
  ====================================================================
  
  the logically sound JS version that didn't work:
+ 
+ function isValidWalk(walk) {
+  return (walk.length ===10 && walk.filter(e => e === 'n').length === walk.filter(e => e === 's').length && walk.filter(e => e === 'e').length === walk.filter(e => e === 'w').length) ? true: false;
+}
+
  function isValidWalk(walk) {
   const NS = walk.filter(ns => ns === 'n' | ns === 's');
   const EW = walk.filter(ew => ew === 'e' | ew === 'w');
