@@ -1,0 +1,27 @@
+Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
+
+The binary number returned should be a string.
+
+======================================================================
+
+My solution:
+
+function addBinary(a,b) {
+    return (a+b) >= 0? (a+b).toString(2):(~(a+b)).toString(2);
+}
+
+======================================================================
+
+Note: dec.toString(2)
+
+======================================================================
+
+function addBinary(a,b){
+  return ((a + b) >>> 0).toString(2);
+}
+
+======================================================================
+
+function addBinary(a,b){
+  return Number(a + b).toString(2);
+}
