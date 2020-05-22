@@ -1,0 +1,39 @@
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+
+==================================================================================================
+
+My Solution:
+
+function high(x){
+  // words is an array of all the words in input string;
+  const words = x.split(" ");
+  // arr is a new array with correstponding value from words;
+  let arr = [];
+  for (let i=0; i< words.length; i++) {
+    const val = words[i].split("").map(n=> n.charCodeAt(0)-96).reduce((a,b)=>(a+b), 0);
+    arr.push(val);
+  }
+  // find the largest element in arr;
+  const largest = Math.max(...arr);
+  // use the largest index to find the word from words array
+  return words[arr.indexOf(largest)];
+}
+
+==================================================================================================
+
+Inspired by this more concise version:
+
+function high(s){
+  let as = s.split(' ').map(s=>[...s].reduce((a,b)=>a+b.charCodeAt(0)-96,0));
+  return s.split(' ')[as.indexOf(Math.max(...as))];
+}
+
+==================================================================================================
