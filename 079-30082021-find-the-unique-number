@@ -1,0 +1,22 @@
+There is an array. All elements are the same except for one. Try to find it!
+
+findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
+findUniq([ 4, 4, 'foo', 4 ]) === 'foo'
+It’s guaranteed that array contains more than 3 elements. Array may contain anything (including NaN).
+
+
+---------------------------------------------------------------------------------------
+function findUniq(arr) {
+  arr.sort((a,b)=>a-b);
+  return arr[0]==arr[1]?arr.pop():arr[0];
+}
+
+---------------------------------------------------------------------------------------
+function findUniq(arr) {
+  return arr.find(n => arr.indexOf(n) === arr.lastIndexOf(n));
+}
+
+---------------------------------------------------------------------------------------
+function findUniq(arr) {
+  return arr.find(e => arr.lastIndexOf(e) === arr.indexOf(e))
+}
